@@ -28,6 +28,15 @@ def pci_info(path):
         pci['device'] = components[2].split('.')[0]
         pci['function'] = components[2].split('.')[1]
 
+    #fix for kvm
+    if path.startswith('platform'):
+        api.current_logger().info('pci_info path {}'.format(path))
+        components = path.split('pci-')[1].split(':')
+        pci['domain'] = components[0]
+        pci['bus'] = components[1]
+        pci['device'] = components[2].split('.')[0]
+        pci['function'] = components[2].split('.')[1]
+
     return pci
 
 
@@ -38,10 +47,16 @@ def interfaces():
     for dev in physical_interfaces():
         attrs = {}
 
+        #fix for oci
+        try:
+            attrs['driver'] = dev['ID_NET_DRIVER']
+        except:
+            attrs['driver'] = "unknown"
+
+
         try:
             attrs['name'] = dev.sys_name
             attrs['devpath'] = dev.device_path
-            attrs['driver'] = dev['ID_NET_DRIVER']
             attrs['vendor'] = dev['ID_VENDOR_ID']
             attrs['pci_info'] = PCIAddress(**pci_info(dev['ID_PATH']))
             attrs['mac'] = dev.attributes.get('address')
