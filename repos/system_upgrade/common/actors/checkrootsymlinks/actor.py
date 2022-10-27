@@ -50,10 +50,10 @@ class CheckRootSymlinks(Actor):
         if absolute_links:
             commands = []
             for item in absolute_links:
-                command = ' '.join(['ln',
+                command = ' '.join(['\'ln',
                                     '-snf',
                                     os.path.relpath(item.target, '/'),
-                                    os.path.join('/', item.name)])
+                                    os.path.join('/', item.name, '\'')])
                 commands.append(command)
             rem_commands = [['sh', '-c', ' && '.join(commands)]]
         # Generate reports about non-utf8 absolute links presence
