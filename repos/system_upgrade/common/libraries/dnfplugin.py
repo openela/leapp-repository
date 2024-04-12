@@ -149,8 +149,8 @@ def backup_debug_data(context):
 def _handle_transaction_err_msg_old(stage, xfs_info, err):
     # NOTE(pstodulk): This is going to be removed in future!
     message = 'DNF execution failed with non zero exit code.'
-    details = {'STDOUT': err.stdout, 'STDERR': err.stderr}
-
+    details = {'STDOUT':  str(re.sub(" +", " ", str([line.strip() for line in err.stdout.split('\n')]))), 'STDERR': str(re.sub(" +", " ", str([line.strip() for line in err.stderr.split('\n')])))
+}
     if 'more space needed on the' in err.stderr and stage != 'upgrade':
         # Disk Requirements:
         #   At least <size> more space needed on the <path> filesystem.
