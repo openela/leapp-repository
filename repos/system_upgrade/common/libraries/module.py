@@ -1,4 +1,5 @@
 import warnings
+from leapp.libraries.common import ocivars
 
 from leapp.libraries.common.config.version import get_source_major_version
 
@@ -39,6 +40,8 @@ def _create_or_get_dnf_base(base=None):
 
         base = dnf.Base(conf=conf)
         base.init_plugins()
+        base.conf.substitutions['ociregion'] = ocivars.get_oci_region_var()
+        base.conf.substitutions['ocidomain'] = ocivars.get_oci_domain_var()
         base.read_all_repos()
         # configure plugins after the repositories are loaded
         # e.g. the amazon-id plugin requires loaded repositories
