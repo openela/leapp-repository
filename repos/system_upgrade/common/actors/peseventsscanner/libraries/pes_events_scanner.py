@@ -165,7 +165,7 @@ def compute_pkg_changes_between_consequent_releases(source_installed_pkgs,
                 removed_pkgs = target_pkgs.intersection(event.in_pkgs)
                 removed_pkgs_str = ', '.join(str(pkg) for pkg in removed_pkgs) if removed_pkgs else '[]'
                 added_pkgs_str = ', '.join(str(pkg) for pkg in event.out_pkgs) if event.out_pkgs else '[]'
-                logger.debug('Applying event %d (%s): replacing packages %s with %s',
+                logger.debug('Applying event %s (%s): replacing packages %s with %s',
                              event.id, event.action, removed_pkgs_str, added_pkgs_str)
 
                 # In pkgs are present, event can be applied
