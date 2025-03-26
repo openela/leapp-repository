@@ -349,14 +349,15 @@ def get_grub_devices():
     # TODO: catch errors and return meaningful value/error instead of StopActorExecution
     boot_device = get_boot_partition()
     devices = []
-    if mdraid.is_mdraid_dev(boot_device):
-        component_devs = mdraid.get_component_devices(boot_device)
-        blk_devs = [blk_dev_from_partition(dev) for dev in component_devs]
-        # remove duplicates as there might be raid on partitions on the same drive
-        # even if that's very unusual
-        devices = sorted(list(set(blk_devs)))
-    else:
-        devices.append(blk_dev_from_partition(boot_device))
+    for boot_device_single in boot_device.splitlines():
+        if mdraid.is_mdraid_dev(boot_device_single):
+            component_devs = mdraid.get_component_devices(boot_device_single)
+            blk_devs = [blk_dev_from_partition(dev) for dev in component_devs]
+            # remove duplicates as there might be raid on partitions on the same drive
+            # even if that's very unusual
+            devices = sorted(list(set(blk_devs)))
+        else:
+            devices.append(blk_dev_from_partition(boot_device_single))
 
     have_grub = [dev for dev in devices if has_grub(dev)]
     api.current_logger().info('GRUB is installed on {}'.format(",".join(have_grub)))
