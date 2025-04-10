@@ -3,14 +3,14 @@
 Also, you could find useufl to read [Leapp framework documentation](https://leapp.readthedocs.io/).
 
 ---
+## This is a branch of upstream leapp-repository that is in active development
 
 ## Troubleshooting
 
 ### Where can I report an issue or RFE related to the framework or other actors?
 
 - GitHub issues are preferred:
-  - Leapp framework: [https://github.com/oamg/leapp/issues/new/choose](https://github.com/oamg/leapp/issues/new/choose)
-  - Leapp actors: [https://github.com/oamg/leapp-repository/issues/new/choose](https://github.com/oamg/leapp-repository/issues/new/choose)
+  - Leapp: [https://github.com/openela/leapp-repository/issues/new/choose](https://github.com/openela/leapp-repository/issues/new/choose)
 
 - When filing an issue, include:
   - Steps to reproduce the issue
@@ -29,4 +29,4 @@ Then you may attach only the `leapp-logs.tgz` file.
 We’ll gladly answer your questions and lead you to through any troubles with the
 actor development.
 
-You can reach us at IRC: `#leapp` on Libera.Chat.
+You can reach us at https://openela.org/join/
