@@ -61,16 +61,16 @@ def process():
         api.produce(SelinuxPermissiveDecision(
             set_permissive=True))
         reporting.create_report([
-            reporting.Title('SElinux will be set to permissive mode'),
+            reporting.Title('SElinux will not to be set to permissive mode'),
             reporting.Summary(
-                'SElinux will be set to permissive mode. Current mode: enforcing. This action is '
-                'required by the upgrade process to make sure the upgraded system can boot without '
-                'beinig blocked by SElinux rules.'
+                'In the past SElinux would have be set to permissive mode. Current mode: enforcing. This action is '
+                'just a reminder that system will NOT be set to permissive mode past upgrade by default. '
+                'System is expected to work fine after upgrade is done.'
             ),
             reporting.Severity(reporting.Severity.LOW),
             reporting.Remediation(hint=(
-                'Make sure there are no SElinux related warnings after the upgrade and enable SElinux '
-                'manually afterwards. Notice: You can ignore the "/root/tmp_leapp_py3" SElinux warnings.'
+                'Make sure there are no SElinux related denials after the upgrade and adjust SElinux '
+                'manually afterwards if needed. Notice: You can ignore the "/root/tmp_leapp_py3" SElinux warnings.'
                 )
             ),
             reporting.Groups([reporting.Groups.SELINUX, reporting.Groups.SECURITY])
