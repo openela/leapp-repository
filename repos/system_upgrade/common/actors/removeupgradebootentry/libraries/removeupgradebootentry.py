@@ -44,10 +44,12 @@ def remove_boot_entry():
 
     # TODO: Move calling `mount -a` to a separate actor as it is not really related to removing the upgrade boot entry.
     #       It's worth to call it after removing the boot entry to avoid boot loop in case mounting fails.
-    run([
-        '/bin/mount', '-a'
-    ])
-
+    #       Since at this moment fstab may already contain uncommented nfs shares, let's create a copy of it,
+    #       comment NFS shares there and try mounting from there
+    run(['/bin/mount', '-a'])
+    run(['cp', '/etc/fstab', '/run/fstab.modded'])
+    run(['sed', '-i', '\% nfs % s/^/#/', '/run/fstab.modded'])
+    run(['/bin/mount', '-a', '--verbose', '-T', '/run/fstab.modded'])
 
 def get_upgrade_kernel_filepath():
     boot_content_msgs = api.consume(BootContent)
