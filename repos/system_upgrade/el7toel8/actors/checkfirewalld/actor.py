@@ -36,7 +36,7 @@ class CheckFirewalld(Actor):
                 list_separator_fmt.join(list(set(unsupported_tables))),)
             create_report([
                 reporting.Title('Firewalld is using an unsupported ebtables table.'),
-                reporting.Summary('ebtables in RHEL-8 does not support these tables:{}{}'.format(*format_tuple)),
+                reporting.Summary('ebtables in OL-8 does not support these tables:{}{}'.format(*format_tuple)),
                 reporting.Severity(reporting.Severity.HIGH),
                 reporting.Groups([
                         reporting.Groups.FIREWALL,

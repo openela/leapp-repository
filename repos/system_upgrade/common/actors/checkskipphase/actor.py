@@ -9,7 +9,7 @@ class CheckSkipPhase(Actor):
     Skip all the subsequent phases until the report phase.
 
     The phases that follow after the Checks phase work with the target
-    RHEL major version user space - stuff around preparing and checking
+    OpenELA major version user space - stuff around preparing and checking
     the rpm transaction. We do not want to process those phases in case of
     inhibition - e.g. for a specific HW unsupported by the target system we
     cannot do anything - we can just see some unclear errors in such case.

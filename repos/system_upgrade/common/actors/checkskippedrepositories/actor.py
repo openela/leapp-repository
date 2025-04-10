@@ -30,7 +30,7 @@ class CheckSkippedRepositories(Actor):
         if repos:
             title = 'Some enabled RPM repositories are unknown to Leapp'
             summary_data = []
-            summary_data.append('The following repositories with Red Hat-signed packages are unknown to Leapp:')
+            summary_data.append('The following repositories with OpenELA-signed packages are unknown to Leapp:')
             summary_data.extend(['- {}'.format(r) for r in repos])
             summary_data.append('And the following packages installed from those repositories may not be upgraded:')
             summary_data.extend(['- {}'.format(p) for p in packages])

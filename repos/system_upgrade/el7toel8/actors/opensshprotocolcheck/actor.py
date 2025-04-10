@@ -10,7 +10,7 @@ class OpenSshProtocolCheck(Actor):
 
     Check the value of Protocol in OpenSSH server config file
     and warn about its deprecation if it is set. This option was removed
-    in RHEL 7.4, but it might still be hanging around.
+    in OpenELA 7.4, but it might still be hanging around.
     """
 
     name = 'open_ssh_protocol'

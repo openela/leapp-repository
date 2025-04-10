@@ -7,7 +7,7 @@ from leapp.tags import ChecksPhaseTag, IPUWorkflowTag
 
 class VsftpdConfigCheck(Actor):
     """
-    Checks whether the vsftpd configuration is supported in RHEL-8. Namely checks that
+    Checks whether the vsftpd configuration is supported in OL8. Namely checks that
     configuration files don't set tcp_wrappers=YES and vsftpd-related configuration is
     not present in tcp_wrappers configuration files at the same time.
     """

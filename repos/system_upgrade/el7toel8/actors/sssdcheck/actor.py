@@ -14,7 +14,7 @@ related = [
 
 class SSSDCheck(Actor):
     """
-    Check SSSD configuration for changes in RHEL8 and report them.
+    Check SSSD configuration for changes in OL8 and report them.
 
     These changes are:
     - id_provider=local is no longer supported and will be ignored

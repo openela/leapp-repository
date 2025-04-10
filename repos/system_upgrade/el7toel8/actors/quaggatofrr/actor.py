@@ -8,7 +8,7 @@ class QuaggaToFrr(Actor):
     """
     Edit frr configuration on the new system.
 
-    Take gathered info about quagga from RHEL 7 and apply these to frr in RHEL 8.
+    Take gathered info about quagga from OpenELA 7 and apply these to frr in OpenELA 8.
     """
 
     name = 'quagga_to_frr'

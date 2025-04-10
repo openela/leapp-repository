@@ -30,11 +30,11 @@ def process():
     target_major_version = get_target_major_version()
 
     if target_major_version == '8':
-        ipu_doc_url = 'https://red.ht/upgrading-rhel7-to-rhel8-main-official-doc'
+        ipu_doc_url = 'https://github.com/openela/'
     elif target_major_version == '9':
-        ipu_doc_url = 'https://red.ht/upgrading-rhel8-to-rhel9-main-official-doc'
+        ipu_doc_url = 'https://github.com/openela/'
     else:
-        ipu_doc_url = 'https://red.ht/upgrading-rhel9-to-rhel10-main-official-doc'
+        ipu_doc_url = 'https://github.com/openela/'
 
     rhui_info = next(api.consume(RHUIInfo), None)
 
@@ -48,8 +48,7 @@ def process():
     is_ctrf = _the_custom_repofile_defined()
     is_re = _the_enablerepo_option_used()
     if not is_ctr:
-        # no rhsm, no custom repositories.. this will really not work :)
-        # TODO: add link to the RH article about use of custom repositories!!
+        # no custom repositories.. this will really not work :)
         # NOTE: we can put here now the link to the main document, as this
         # will be described there or at least the link to the right document
         # will be delivered here.
@@ -58,15 +57,10 @@ def process():
         else:
             summary_ctrf = ''
         reporting.create_report([
-            reporting.Title('Using RHSM has been skipped but no custom or RHUI repositories have been delivered.'),
+            reporting.Title('No custom repositories have been delivered.'),
             reporting.Summary(
-                'Leapp is run in the mode when the Red Hat Subscription Manager'
-                ' is not used (the --no-rhsm option or the LEAPP_NO_RHSM=1'
-                ' environment variable has been set) so leapp is not able to'
-                ' obtain YUM/DNF repositories with the content for the target'
-                ' system in the standard way. The content has to be delivered'
-                ' either by user manually or, in case of public clouds, by a'
-                ' special Leapp package for RHUI environments.'
+                'Leapp is unable to detect any custom repositories for the'
+                ' target release'
                 ),
             reporting.Remediation(hint=(
                 'Create the repository file according to instructions in the'
@@ -78,7 +72,7 @@ def process():
             reporting.Severity(reporting.Severity.HIGH),
             reporting.Groups([reporting.Groups.SANITY]),
             reporting.Groups([reporting.Groups.INHIBITOR]),
-            reporting.ExternalLink(url=ipu_doc_url, title='UPGRADING TO RHEL {}'.format(target_major_version)),
+            reporting.ExternalLink(url=ipu_doc_url, title='UPGRADING TO OpenELA {}'.format(target_major_version)),
             reporting.RelatedResource('file', CUSTOM_REPO_PATH),
         ])
     elif not (is_ctrf or is_re):
@@ -88,7 +82,7 @@ def process():
         reporting.create_report([
             reporting.Title('Detected "CustomTargetRepositories" without using new provided mechanisms used.'),
             reporting.Summary(
-                'Red Hat now provides an official way for using custom'
+                'OpenELA now provides an official way for using custom'
                 ' repositories during the in-place upgrade through'
                 ' the referred custom repository file or through the'
                 ' --enablerepo option for leapp. The CustomTargetRepositories'
@@ -101,6 +95,6 @@ def process():
                 ' message.'
             )),
             reporting.Severity(reporting.Severity.INFO),
-            reporting.ExternalLink(url=ipu_doc_url, title='UPGRADING TO RHEL {}'.format(target_major_version)),
+            reporting.ExternalLink(url=ipu_doc_url, title='UPGRADING TO OpenELA {}'.format(target_major_version)),
             reporting.RelatedResource('file', CUSTOM_REPO_PATH),
         ])

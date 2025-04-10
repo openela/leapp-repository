@@ -40,7 +40,6 @@ def remove_boot_entry():
     if architecture.matches_architecture(architecture.ARCH_S390X):
         # on s390x we need to call zipl explicitly because of issue in grubby,
         # otherwise the new boot entry will not be set as default
-        # See https://bugzilla.redhat.com/show_bug.cgi?id=1764306
         run(['/usr/sbin/zipl'])
 
     # TODO: Move calling `mount -a` to a separate actor as it is not really related to removing the upgrade boot entry.

@@ -7,7 +7,7 @@ from leapp.tags import IPUWorkflowTag, PreparationPhaseTag
 
 class RemoveOldPAMModulesApply(Actor):
     """
-    Remove old PAM modules that are no longer available in RHEL-8 from
+    Remove old PAM modules that are no longer available in OL-8 from
     PAM configuration to avoid system lock out.
     """
 

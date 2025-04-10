@@ -62,7 +62,7 @@ class TcpWrappersCheck(Actor):
             create_report([
                 reporting.Title('TCP Wrappers configuration affects some installed packages'),
                 reporting.Summary(
-                    'tcp_wrappers support has been removed in RHEL-8. '
+                    'tcp_wrappers support has been removed in OL-8. '
                     'There is some configuration affecting installed packages (namely {}) '
                     'in /etc/hosts.deny or /etc/hosts.allow, which '
                     'is no longer going to be effective after update. '
@@ -70,8 +70,8 @@ class TcpWrappersCheck(Actor):
                 ),
                 reporting.Severity(reporting.Severity.HIGH),
                 reporting.ExternalLink(
-                    title='Replacing TCP Wrappers in RHEL 8',
-                    url='https://access.redhat.com/solutions/3906701'
+                    title='Preparing for an upgrade using leapp',
+                    url='https://github.com/openela'
                 ),
                 reporting.Groups([reporting.Groups.SECURITY, reporting.Groups.NETWORK]),
                 reporting.Groups([reporting.Groups.INHIBITOR]),

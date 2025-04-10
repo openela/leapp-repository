@@ -19,7 +19,7 @@ def process(openssh_messages):
             reporting.Summary(
                 'OpenSSH is configured to disable privilege '
                 'separation sandbox, which is decreasing security '
-                'and is no longer supported in RHEL 8'
+                'and is no longer supported in OpenELA 8'
             ),
             reporting.Severity(reporting.Severity.LOW),
             reporting.Groups([

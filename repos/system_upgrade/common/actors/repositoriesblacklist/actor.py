@@ -7,7 +7,7 @@ from leapp.tags import FactsPhaseTag, IPUWorkflowTag
 
 class RepositoriesBlacklist(Actor):
     """
-    Exclude target repositories provided by Red Hat without support.
+    Exclude target repositories provided by OpenELA without support.
 
     Conditions to exclude:
     - there are not such repositories already enabled on the source system

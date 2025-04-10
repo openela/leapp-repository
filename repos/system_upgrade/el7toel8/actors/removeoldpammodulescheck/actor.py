@@ -9,7 +9,7 @@ from leapp.tags import ChecksPhaseTag, IPUWorkflowTag
 
 class RemoveOldPAMModulesCheck(Actor):
     """
-    Check if it is all right to disable PAM modules that are not in RHEL-8.
+    Check if it is all right to disable PAM modules that are not in OL-8.
 
     If admin will refuse to disable these modules (pam_pkcs11 and pam_krb5),
     upgrade will be stopped. Otherwise we would risk locking out the system
@@ -29,7 +29,7 @@ class RemoveOldPAMModulesCheck(Actor):
                     label='Disable pam_pkcs11 module in PAM configuration? '
                           'If no, the upgrade process will be interrupted.',
                     description='PAM module pam_pkcs11 is no longer available '
-                                'in RHEL-8 since it was replaced by SSSD.',
+                                'in OL-8 since it was replaced by SSSD.',
                     reason='Leaving this module in PAM configuration may '
                            'lock out the system.'
                 ),
@@ -44,7 +44,7 @@ class RemoveOldPAMModulesCheck(Actor):
                     label='Disable pam_krb5 module in PAM configuration? '
                           'If no, the upgrade process will be interrupted.',
                     description='PAM module pam_krb5 is no longer available '
-                                'in RHEL-8 since it was replaced by SSSD.',
+                                'in OL-8 since it was replaced by SSSD.',
                     reason='Leaving this module in PAM configuration may '
                            'lock out the system.'
                 ),
@@ -78,9 +78,9 @@ class RemoveOldPAMModulesCheck(Actor):
             reporting.Title('Module {0} will be removed from PAM configuration'.format(module)),
             reporting.Summary(
                 'Module {0} was surpassed by SSSD and therefore it was '
-                'removed from RHEL-8. Keeping it in PAM configuration may '
+                'removed from OL-8. Keeping it in PAM configuration may '
                 'lock out the system thus it will be automatically removed '
-                'from PAM configuration before upgrading to RHEL-8. '
+                'from PAM configuration before upgrading to OL-8. '
                 'Please switch to SSSD to recover the functionality '
                 'of {0}.'.format(module)
             ),
@@ -102,7 +102,7 @@ class RemoveOldPAMModulesCheck(Actor):
                 'automatically.'.format(module)),
             reporting.Summary(
                 'Module {0} was surpassed by SSSD and therefore it was '
-                'removed from RHEL-8. Keeping it in PAM configuration may '
+                'removed from OL-8. Keeping it in PAM configuration may '
                 'lock out the system thus it is necessary to disable it '
                 'before the upgrade process can continue.'.format(module)
             ),

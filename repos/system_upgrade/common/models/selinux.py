@@ -37,7 +37,7 @@ class SELinuxRequestRPMs(Model):
 
     Listed packages provide types that where used in policy
     customizations (to_install), or the corresponding policy
-    was installed on RHEL-7 installation with priority 200
+    was installed on OL-7 installation with priority 200
     (to_keep).
     """
     topic = TransactionTopic

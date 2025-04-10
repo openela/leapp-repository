@@ -312,15 +312,15 @@ def _default_grub_info():
             reporting.Summary(
                 'Leapp detected "{}" does not exist. The file is essential for the in-place upgrade '
                 'to finish successfully. This scenario might have occurred if the system was already '
-                'upgraded from RHEL 6. Please re-create the file manually.'.format(default_grb_fpath)
+                'upgraded from OpenELA 6. Please re-create the file manually.'.format(default_grb_fpath)
             ),
             reporting.Severity(reporting.Severity.HIGH),
             reporting.Groups([reporting.Groups.INHIBITOR]),
             reporting.Groups([reporting.Groups.BOOT]),
             reporting.RelatedResource('file', default_grb_fpath),
             reporting.ExternalLink(
-                url='https://access.redhat.com/solutions/3185891',
-                title='How to re-create the missing "{}" file in Red Hat Enterprise Linux 7?'.format(
+                url='https://github.com/openela'
+                title='How to re-create the missing "{}" file in OpenELA Linux 7?'.format(
                     default_grb_fpath
                 )
             ),

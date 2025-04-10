@@ -6,7 +6,7 @@ from leapp.tags import ApplicationsPhaseTag, IPUWorkflowTag
 
 class VsftpdConfigUpdate(Actor):
     """
-    Modifies vsftpd configuration files on the target RHEL-8 system so that the effective
+    Modifies vsftpd configuration files on the target OL-8 system so that the effective
     configuration is the same, where possible. This means doing two things:
     1. Reverting the default configuration file (/etc/vsftpd/vsftpd.conf) to its state
        before the upgrade (where it makes sense), if the configuration file was being used

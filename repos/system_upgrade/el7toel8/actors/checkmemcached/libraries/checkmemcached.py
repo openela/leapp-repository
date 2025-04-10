@@ -45,7 +45,7 @@ def check_memcached(memcached_installed):
     if default_memcached_conf:
         reporting.create_report([
             reporting.Title('memcached service is using default configuration'),
-            reporting.Summary('memcached in RHEL8 listens on loopback only and has UDP port disabled by default'),
+            reporting.Summary('memcached in OL8 listens on loopback only and has UDP port disabled by default'),
             reporting.Severity(reporting.Severity.MEDIUM),
             reporting.Groups(COMMON_REPORT_TAGS),
         ] + related)
@@ -54,7 +54,7 @@ def check_memcached(memcached_installed):
         reporting.create_report([
             reporting.Title('memcached has enabled UDP port'),
             reporting.Summary(
-                'memcached in RHEL7 has UDP port enabled by default, but it is disabled by default in RHEL8'
+                'memcached in OL7 has UDP port enabled by default, but it is disabled by default in OL8'
             ),
             reporting.Severity(reporting.Severity.MEDIUM),
             reporting.Groups(COMMON_REPORT_TAGS),
@@ -63,7 +63,7 @@ def check_memcached(memcached_installed):
     else:
         reporting.create_report([
             reporting.Title('memcached has already disabled UDP port'),
-            reporting.Summary('memcached in RHEL8 has UDP port disabled by default'),
+            reporting.Summary('memcached in OL8 has UDP port disabled by default'),
             reporting.Severity(reporting.Severity.LOW),
             reporting.Groups(COMMON_REPORT_TAGS),
         ] + related)

@@ -7,7 +7,7 @@ BROWSED_CONFIG = '/etc/cups/cups-browsed.conf'
 
 
 # The list of macros that should be set to get the behavior
-# from previous RHEL
+# from previous OL
 NEW_MACROS = [
     ('LocalQueueNamingRemoteCUPS', 'RemoteName'),
     ('CreateIPPPrinterQueues', 'All')

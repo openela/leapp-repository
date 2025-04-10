@@ -39,9 +39,9 @@ def _check_default_path_checker(options):
         ),
         reporting.Summary(
             'device-mapper-multipath has changed the default path_checker '
-            'from "directio" to "tur" in RHEL-8. Further, changing the '
+            'from "directio" to "tur" in OL-8. Further, changing the '
             'default path_checker can cause issues with built-in device '
-            'configurations in RHEL-8. Please remove the "path_checker" '
+            'configurations in OL-8. Please remove the "path_checker" '
             'option from the defaults section of {}, and add it to the '
             'device configuration of any devices that need it.'.
             format(pathname)
@@ -80,10 +80,10 @@ def _check_default_detection(options):
             'device-mapper-multipath now defaults to detecting settings'
         ),
         reporting.Summary(
-            'In RHEL-8, the default value for the "detect_path_checker", '
+            'In OL-8, the default value for the "detect_path_checker", '
             '"detect_prio" and "retain_attached_hw_handler" options has '
             'changed to "yes". Further, changing these default values can '
-            'cause issues with the built-in device configurations in RHEL-8. '
+            'cause issues with the built-in device configurations in OL-8. '
             'They will be commented out in the defaults section of all '
             'multipath config files. This is unlikely to cause any issues '
             'with existing configurations. If it does, please move these '
@@ -108,7 +108,7 @@ def _check_reassign_maps(options):
             'device-mapper-multipath now disables reassign_maps by default'
         ),
         reporting.Summary(
-            'In RHEL-8, the default value for "reassign_maps" has been '
+            'In OL-8, the default value for "reassign_maps" has been '
             'changed to "no", and it is not recommended to enable it in any '
             'configuration going forward. This option will be commented out '
             'in {}.'.format(pathname)

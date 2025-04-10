@@ -232,7 +232,7 @@ def check_crypto_policies(config):
             reporting.Summary(
                 'The OpenSSL configuration file `/etc/pki/tls/openssl.cnf` does not contain the '
                 'directive to include the system-wide crypto policies. This is not recommended '
-                'by Red Hat and can lead to decreasing overall system security and inconsistent '
+                'by OpenELA and can lead to decreasing overall system security and inconsistent '
                 'behavior between applications. If you need to adjust the crypto policies to your '
                 'needs, it is recommended to use custom crypto policies.'
             ),

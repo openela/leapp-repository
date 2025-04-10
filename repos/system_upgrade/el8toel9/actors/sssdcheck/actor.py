@@ -14,7 +14,7 @@ related = [
 
 class SSSDCheck8to9(Actor):
     """
-    Check SSSD configuration for changes in RHEL9 and report them in model.
+    Check SSSD configuration for changes in OL9 and report them in model.
 
     Implicit files domain is disabled by default. This may affect local
     smartcard authentication if there is not explicit files domain created.

@@ -3,7 +3,7 @@ from leapp.libraries.common.config.version import get_target_major_version
 from leapp.libraries.stdlib import api
 from leapp.models import KernelCmdlineArg, SELinuxFacts, SelinuxPermissiveDecision, SelinuxRelabelDecision
 
-DOC_URL = 'https://red.ht/rhel9-disabling-selinux'
+DOC_URL = 'https://github.com/openela/'
 
 
 def process():
@@ -20,10 +20,10 @@ def process():
             reporting.create_report([
                 reporting.Title('LEAPP detected SELinux disabled in "/etc/selinux/config"'),
                 reporting.Summary(
-                    'On RHEL 9, disabling SELinux in "/etc/selinux/config" is no longer possible. '
+                    'On OpenELA 9, disabling SELinux in "/etc/selinux/config" is no longer possible. '
                     'This way, the system starts with SELinux enabled but with no policy loaded. LEAPP '
                     'will automatically disable SELinux using "SELINUX=0" kernel command line parameter. '
-                    'However, Red Hat strongly recommends to have SELinux enabled'
+                    'However, OpenELA strongly recommends to have SELinux enabled'
                 ),
                 reporting.Severity(reporting.Severity.INFO),
                 reporting.Groups([reporting.Groups.SELINUX]),

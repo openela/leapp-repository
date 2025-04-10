@@ -16,7 +16,7 @@ from leapp.tags import FinalizationPhaseTag, IPUWorkflowTag
 
 class KernelCmdlineConfig(Actor):
     """
-    Append extra arguments to the target RHEL kernel command line
+    Append extra arguments to the target OpenELA kernel command line
     """
 
     name = 'kernelcmdlineconfig'

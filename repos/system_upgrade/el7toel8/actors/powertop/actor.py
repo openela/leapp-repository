@@ -21,11 +21,11 @@ class PowerTop(Actor):
             create_report([
                 reporting.Title('PowerTOP compatibility options removed in the next major version'),
                 reporting.Summary(
-                    'The -d (dump) option which has been kept for RHEL backward compatibility has been '
+                    'The -d (dump) option which has been kept for OpenELA backward compatibility has been '
                     'dropped.\n'
-                    'The -h option which has been used for RHEL backward compatibility is no longer '
+                    'The -h option which has been used for OpenELA backward compatibility is no longer '
                     'alias for --html, but it\'s now an alias for --help to follow the upstream.\n'
-                    'The -u option which has been used for RHEL backward compatibility as an alias for '
+                    'The -u option which has been used for OpenELA backward compatibility as an alias for '
                     '--help has been dropped.\n'
                 ),
                 reporting.Severity(reporting.Severity.LOW),

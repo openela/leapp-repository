@@ -1,11 +1,11 @@
 from leapp import reporting
 from leapp.libraries.common.config.version import get_source_major_version
 
-MIGRATION_GUIDE_7 = "https://red.ht/IdM-upgrading-RHEL-7-to-RHEL-8"
+MIGRATION_GUIDE_7 = "https://github.com/openela/"
 
 # TBD: update the doc url when migration guide 8->9 becomes available
-MIGRATION_GUIDE_8 = "https://red.ht/IdM-upgrading-RHEL-8-to-RHEL-9"
-MIGRATION_GUIDE_9 = "https://red.ht/IdM-upgrading-RHEL-9-to-RHEL-10"
+MIGRATION_GUIDE_8 = "https://github.com/openela/"
+MIGRATION_GUIDE_9 = "https://github.com/openela/"
 MIGRATION_GUIDES = {
     '7': MIGRATION_GUIDE_7,
     '8': MIGRATION_GUIDE_8,
@@ -26,7 +26,7 @@ def ipa_inhibit_upgrade(ipainfo):
             "does not support in-place upgrade."
         ),
         reporting.Remediation(
-            hint="Follow the IdM RHEL migration guide lines."
+            hint="Follow the IdM OpenELA migration guide lines."
         ),
         reporting.ExternalLink(
             url=MIGRATION_GUIDES.get(get_source_major_version(), "TBD"),

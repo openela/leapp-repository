@@ -10,7 +10,7 @@ class CheckMemcached(Actor):
     """
     Check for incompatible changes in memcached configuration.
 
-    Warn that memcached in RHEL8 no longer listens on the UDP port by default
+    Warn that memcached in OL8 no longer listens on the UDP port by default
     and the default service configuration binds memcached to the loopback
     interface.
     """

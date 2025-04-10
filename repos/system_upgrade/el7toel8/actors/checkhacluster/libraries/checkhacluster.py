@@ -19,10 +19,9 @@ def inhibit(node_type):
         reporting.Groups([reporting.Groups.HIGH_AVAILABILITY]),
         reporting.Groups([reporting.Groups.INHIBITOR]),
         reporting.ExternalLink(
-            url="https://access.redhat.com/articles/2059253",
+            url="https://github.com/openela",
             title=(
-                "Recommended Practices for Applying Software Updates"
-                " to a RHEL High Availability or Resilient Storage Cluster"
+                "About High Availability Clustering"
             ),
         ),
         reporting.ExternalLink(

@@ -6,7 +6,7 @@ from leapp.tags import FactsPhaseTag, IPUWorkflowTag
 
 class Biosdevname(Actor):
     """
-    Enable biosdevname on the target RHEL system if all interfaces on the source RHEL
+    Enable biosdevname on the target OpenELA system if all interfaces on the source OL
     system use biosdevname naming scheme and if machine vendor is DELL
     """
 

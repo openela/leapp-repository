@@ -14,7 +14,7 @@ class IPUWorkflow(Workflow):
     tag = tags.IPUWorkflowTag
     short_name = 'ipu'
     configuration = IPUConfig
-    description = """The IPU workflow takes care of an in-place upgrade (IPU) of RHEL 7 to RHEL 8."""
+    description = """The IPU workflow takes care of an in-place upgrade (IPU) of OpenELA 7 to OpenELA 8."""
 
     class FactsCollectionPhase(Phase):
         """

@@ -26,9 +26,9 @@ class OpenSshPermitRootLoginCheck(Actor):
     OpenSSH no longer allows root logins with password.
 
     Check the values of PermitRootLogin in OpenSSH server configuration file
-    and warn about potential issues after upgrade to the next major version of RHEL.
+    and warn about potential issues after upgrade to the next major version of OL.
 
-    The RHEL8 still provided default configuration that allowed root logins,
+    The OL8 still provided default configuration that allowed root logins,
     which can lead to possible unwanted changes during the upgrade
     """
     name = 'openssh_permit_root_login'
@@ -70,7 +70,7 @@ class OpenSshPermitRootLoginCheck(Actor):
                 reporting.Summary(
                     'OpenSSH configuration file does not explicitly state '
                     'the option PermitRootLogin in sshd_config file, '
-                    'which will default in RHEL8 to "prohibit-password".'
+                    'which will default in OL8 to "prohibit-password".'
                 ),
                 reporting.Severity(reporting.Severity.HIGH),
                 reporting.Groups(COMMON_REPORT_TAGS),
@@ -113,14 +113,14 @@ class OpenSshPermitRootLoginCheck(Actor):
             ] + COMMON_RESOURCES)
 
     def process8to9(self, config):
-        # RHEL8 default sshd configuration file is not modified: It will get replaced by rpm and
+        # OL8 default sshd configuration file is not modified: It will get replaced by rpm and
         # root will no longer be able to connect through ssh. This will probably result in many
         # false positives so it will have to be waived a lot
         if not config.modified:
             create_report([
                 reporting.Title('Possible problems with remote login using root account'),
                 reporting.Summary(
-                    'OpenSSH configuration file will get updated to RHEL9 '
+                    'OpenSSH configuration file will get updated to OL9 '
                     'version, no longer allowing root login with password. '
                     'It is a good practice to use non-root administrative '
                     'user and non-password authentications, but if you rely '
@@ -145,13 +145,13 @@ class OpenSshPermitRootLoginCheck(Actor):
             ] + COMMON_RESOURCES)
         # If the configuration is modified and contains any directive allowing
         # root login (which is in default configuration), we are upgrading to
-        # RHEL9 keeping the old "security policy", which might keep the root
+        # OL9 keeping the old "security policy", which might keep the root
         # login unexpectedly open. This might be just high priority warning
         if global_value(config, 'prohibit-password') == 'yes':
             create_report([
                 reporting.Title('Remote root logins globally allowed using password'),
                 reporting.Summary(
-                    'RHEL9 no longer allows remote root logins, but the '
+                    'OL9 no longer allows remote root logins, but the '
                     'server configuration explicitly overrides this default. '
                     'The configuration file will not be updated and root is '
                     'still going to be allowed to login with password. '

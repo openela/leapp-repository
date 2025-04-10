@@ -7,7 +7,7 @@ from leapp.models import FirmwareFacts
 
 def update_grub_core(grub_devs):
     """
-    Update GRUB core after upgrade from RHEL7 to RHEL8
+    Update GRUB core after upgrade from OL7 to OL8
 
     On legacy systems, GRUB core does not get automatically updated when GRUB packages
     are updated.

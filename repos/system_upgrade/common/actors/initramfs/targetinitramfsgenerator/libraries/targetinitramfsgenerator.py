@@ -108,8 +108,8 @@ def process():
     target_kernel_info = next(api.consume(InstalledTargetKernelInfo), None)
     if not target_kernel_info:
         raise StopActorExecutionError(
-            'Cannot get version of the installed RHEL-8 kernel',
-            details={'Problem': 'Did not receive a message with installed RHEL-8 kernel version'
+            'Cannot get version of the installed OL-8 kernel',
+            details={'Problem': 'Did not receive a message with installed OL-8 kernel version'
                                 ' (InstalledTargetKernelVersion)'})
 
     _copy_modules(modules['dracut'], DRACUT_DIR, 'dracut')

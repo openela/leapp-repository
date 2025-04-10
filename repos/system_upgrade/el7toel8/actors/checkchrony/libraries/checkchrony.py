@@ -41,7 +41,7 @@ def check_chrony(chrony_installed):
     else:
         reporting.create_report([
             reporting.Title('chrony using non-default configuration'),
-            reporting.Summary('chrony behavior will not change in RHEL8'),
+            reporting.Summary('chrony behavior will not change in OL8'),
             reporting.Severity(reporting.Severity.LOW),
             reporting.Groups([
                     reporting.Groups.SERVICES,

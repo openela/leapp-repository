@@ -12,10 +12,10 @@ COMMON_REPORT_TAGS = [
 
 class QuaggaReport(Actor):
     """
-    Checking for babeld on RHEL-7.
+    Checking for babeld on OL-7.
 
-    This actor is supposed to report that babeld was used on RHEL-7
-    and it is no longer available in RHEL-8.
+    This actor is supposed to report that babeld was used on OL-7
+    and it is no longer available in OL-8.
     """
 
     name = 'quagga_report'
@@ -32,11 +32,11 @@ class QuaggaReport(Actor):
             create_report([
                 reporting.Title('Babeld is not available in FRR'),
                 reporting.ExternalLink(
-                    url='https://red.ht/rhel-8-configuring-routing-protocols',
-                    title='Setting routing protocols in RHEL8'),
+                    url='https://github.com/openela"
+                    title='Setting routing protocols in OL8'),
                 reporting.Summary(
-                    'babeld daemon which was a part of quagga implementation in RHEL7 '
-                    'is not available in RHEL8 in FRR due to licensing issues.'
+                    'babeld daemon which was a part of quagga implementation in OL7 '
+                    'is not available in OL8 in FRR due to licensing issues.'
                 ),
                 reporting.Severity(reporting.Severity.HIGH),
                 reporting.Groups(COMMON_REPORT_TAGS),

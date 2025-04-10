@@ -7,9 +7,9 @@ from leapp.tags import FactsPhaseTag, IPUWorkflowTag
 
 class RemoveOldPAMModulesScanner(Actor):
     """
-    Scan PAM configuration for modules that are not available in RHEL-8.
+    Scan PAM configuration for modules that are not available in OL-8.
 
-    PAM module pam_krb5 and pam_pkcs11 are no longer present in RHEL-8
+    PAM module pam_krb5 and pam_pkcs11 are no longer present in OL-8
     and must be removed from PAM configuration, otherwise it may lock out
     the system.
     """

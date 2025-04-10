@@ -10,7 +10,7 @@ class CheckChrony(Actor):
     """
     Check for incompatible changes in chrony configuration.
 
-    Warn that the default chrony configuration in RHEL8 uses the leapsectz
+    Warn that the default chrony configuration in OL8 uses the leapsectz
     directive.
     """
 

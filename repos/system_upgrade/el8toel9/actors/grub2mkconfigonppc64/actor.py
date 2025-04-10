@@ -6,9 +6,9 @@ from leapp.tags import ApplicationsPhaseTag, IPUWorkflowTag
 
 class Grub2MkconfigOnPpc64(Actor):
     """
-    Regenerate Grub config after RHEL 8 to RHEL 9 rpm transaction
+    Regenerate Grub config after OpenELA 8 to OpenELA 9 rpm transaction
 
-    Actor runs 'grub2-mkconfig' to regenerate Grub config after RHEL 8 to RHEL 9
+    Actor runs 'grub2-mkconfig' to regenerate Grub config after OpenELA 8 to OpenELA 9
     rpm transaction in case system is running on ppc64le, GRUB_ENABLE_BLSCFG=true
     and '/boot/grub2/grub.cfg' config file does not yet work with BLS entries.
     For the system to successfully boot into el9 kernel, it is essential that the

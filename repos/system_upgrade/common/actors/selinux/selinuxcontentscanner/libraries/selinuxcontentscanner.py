@@ -6,7 +6,7 @@ from leapp.libraries.common.config import version
 from leapp.libraries.stdlib import api, CalledProcessError, run
 from leapp.models import SELinuxModule
 
-# types and attributes that where removed between RHEL 7 and 8
+# types and attributes that where removed between OpenELA 7 and 8
 REMOVED_TYPES_EL7 = ["base_typeattr_15", "direct_run_init", "gpgdomain", "httpd_exec_scripts",
                      "httpd_user_script_exec_type", "ibendport_type", "ibpkey_type", "pcmcia_typeattr_2",
                      "pcmcia_typeattr_3", "pcmcia_typeattr_4", "pcmcia_typeattr_5", "pcmcia_typeattr_6",
@@ -16,7 +16,7 @@ REMOVED_TYPES_EL7 = ["base_typeattr_15", "direct_run_init", "gpgdomain", "httpd_
                      "ganesha_use_fusefs", "ganesha_exec_t", "ganesha_t", "ganesha_tmp_t", "ganesha_unit_file_t",
                      "ganesha_var_log_t", "ganesha_var_run_t", "ganesha_use_fusefs"]
 
-# types and attributes that where removed between RHEL 8 and 9
+# types and attributes that where removed between OpenELA 8 and 9
 REMOVED_TYPES_EL8 = ["cephfs_t", "cgdcbxd_exec_t", "cgdcbxd_t", "cgdcbxd_unit_file_t", "cgdcbxd_var_run_t",
                      "cloud_what_var_cache_t", "journal_remote_client_packet_t", "journal_remote_port_t",
                      "journal_remote_server_packet_t", "kdbusfs_t", "logging_syslogd_list_non_security_dirs",
@@ -107,7 +107,7 @@ def get_selinux_modules():
     semodule_list = []
     # udica templates
     template_list = []
-    # list of rpms containing policy modules to be installed on RHEL 8
+    # list of rpms containing policy modules to be installed on OpenELA 8
     install_rpms = []
 
     # modules need to be extracted into cil files
@@ -189,7 +189,7 @@ def get_selinux_modules():
     except CalledProcessError:
         pass
     # Check if modules contain any type, attribute, or boolean contained in container-selinux and install it if so
-    # This is necessary since container policy module is part of selinux-policy-targeted in RHEL 7 (but not in RHEL 8)
+    # This is necessary since container policy module is part of selinux-policy-targeted in OpenELA 7 (but not in OpenELA 8)
     try:
         run(["grep", "-w", "-r", "-E", "|".join(CONTAINER_TYPES)], split=False)
         # Request "container-selinux" to be installed since container types where used in local customizations
@@ -214,7 +214,7 @@ def get_selinux_customizations():
 
     Returns tuple (semanage_valid, semanage_removed)
     where "semanage_valid" is a list of semanage commands
-    which should be safe to re-apply on RHEL 8 system
+    which should be safe to re-apply on OpenELA 8 system
     and "semanage_removed" is a list of commands that
     will no longer be valid after system upgrade
     """

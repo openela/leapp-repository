@@ -3,7 +3,7 @@ from leapp.libraries.stdlib import api
 from leapp.models import DistributionSignedRPM
 
 # Database of changes in configuration files of sane-backends
-# between RHELs
+# between OLs
 
 CANON_DR = [
     '# P-150M',

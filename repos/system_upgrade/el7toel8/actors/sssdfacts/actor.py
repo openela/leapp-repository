@@ -8,7 +8,7 @@ from leapp.tags import FactsPhaseTag, IPUWorkflowTag
 
 class SSSDFacts(Actor):
     """
-    Check SSSD configuration for changes in RHEL8 and report them in model.
+    Check SSSD configuration for changes in OL8 and report them in model.
 
     These changes are:
     - id_provider=local is no longer supported and will be ignored

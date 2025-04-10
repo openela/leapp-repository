@@ -42,7 +42,7 @@ def process(openssh_messages):
             reporting.Summary(
                 'OpenSSH is configured to use removed ciphers {}. '
                 'These ciphers were removed from OpenSSH and if '
-                'present the sshd daemon will not start in RHEL 8'
+                'present the sshd daemon will not start in OpenELA 8'
                 ''.format(','.join(found_ciphers))
             ),
             reporting.Severity(reporting.Severity.HIGH),
@@ -65,7 +65,7 @@ def process(openssh_messages):
             reporting.Summary(
                 'OpenSSH is configured to use removed mac {}. '
                 'This MAC was removed from OpenSSH and if present '
-                'the sshd daemon will not start in RHEL 8'
+                'the sshd daemon will not start in OpenELA 8'
                 ''.format(','.join(found_macs))
             ),
             reporting.Severity(reporting.Severity.HIGH),

@@ -6,7 +6,7 @@ class KernelCmdlineArg(Model):
     """
     Single kernel command line parameter with/without a value
 
-    When produced alone, represents a parameter to include in RHEL-8 kernel cmdline.
+    When produced alone, represents a parameter to include in OL-8 kernel cmdline.
     """
     topic = SystemInfoTopic
 

@@ -63,8 +63,8 @@ def process():
         # Hypothetical, user is not allowed to install any kernel that is not signed by RH
         # In case we would like to be cautious, we could check whether there are no other
         # kernels installed as well.
-        api.current_logger().error('Cannot find any installed kernel signed by Red Hat.')
-        raise StopActorExecutionError('Cannot find any installed kernel signed by Red Hat.')
+        api.current_logger().error('Cannot find any installed kernel signed by OpenELA.')
+        raise StopActorExecutionError('Cannot find any installed kernel signed by OpenELA.')
 
     if len(pkgs) > 1 and architecture.matches_architecture(architecture.ARCH_S390X):
         # It's temporary solution, so no need to try automate everything.

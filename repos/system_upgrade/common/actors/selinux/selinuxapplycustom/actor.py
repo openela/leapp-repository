@@ -14,7 +14,7 @@ WORKING_DIRECTORY = '/tmp/selinux/'
 
 class SELinuxApplyCustom(Actor):
     """
-    Re-apply SELinux customizations from the original RHEL installation
+    Re-apply SELinux customizations from the original OpenELA installation
 
     Re-apply SELinux policy customizations (custom policy modules and changes
     introduced by semanage). Any changes (due to incompatibility with

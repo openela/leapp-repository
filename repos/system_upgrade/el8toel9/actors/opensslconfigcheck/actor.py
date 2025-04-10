@@ -13,7 +13,7 @@ from leapp.tags import ChecksPhaseTag, IPUWorkflowTag
 
 class OpenSslConfigCheck(Actor):
     """
-    The OpenSSL configuration changed between RHEL8 and RHEL9 significantly with the rebase to
+    The OpenSSL configuration changed between OL8 and OL9 significantly with the rebase to
     OpenSSL 3.0. There are several things to check:
 
      * If the file was not modified by user, the RPM will take care of the upgrade

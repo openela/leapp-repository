@@ -18,7 +18,7 @@ def process(openssh_messages):
             reporting.Summary(
                 'OpenSSH is configured with removed configuration '
                 'option Protocol. If this used to be for enabling '
-                'SSHv1, this is no longer supported in RHEL 8. '
+                'SSHv1, this is no longer supported in OpenELA 8. '
                 'Otherwise this option can be simply removed.'
             ),
             reporting.Severity(reporting.Severity.LOW),

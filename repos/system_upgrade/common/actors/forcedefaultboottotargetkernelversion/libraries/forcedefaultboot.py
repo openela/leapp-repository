@@ -18,7 +18,6 @@ def update_default_kernel(kernel_info):
             if architecture.matches_architecture(architecture.ARCH_S390X):
                 # on s390x we need to call zipl explicitly because of issue in grubby,
                 # otherwise the new boot entry will not be set as default
-                # See https://bugzilla.redhat.com/show_bug.cgi?id=1764306
                 stdlib.run(['/usr/sbin/zipl'])
         except (OSError, stdlib.CalledProcessError):
             api.current_logger().error('Failed to set default kernel to: %s',

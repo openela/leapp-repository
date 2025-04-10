@@ -10,9 +10,9 @@ class FirewalldUpdateLockdownWhitelist(Actor):
     """
     Update the firewalld Lockdown Whitelist.
 
-    RHEL-8 uses a platform specific python interpreter for packaged
+    OL-8 uses a platform specific python interpreter for packaged
     applications. For firewall-config, the interpreter path is part of the
-    lockdown list. In RHEL-7 this was simply /usr/bin/python, but in RHEL-8
+    lockdown list. In OL-7 this was simply /usr/bin/python, but in OL-8
     it's /usr/libexec/platform-python. However, if the user made changes to the
     lockdown whitelist it won't be replaced by RPM/dnf. As such we must update
     the interpreter if the old value is there.

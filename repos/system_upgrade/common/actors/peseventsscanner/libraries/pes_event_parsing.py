@@ -194,14 +194,14 @@ def parse_entry(entry):
                           'z_stream': None,
                           'major_version': 7,
                           'tag': None,
-                          'os_name': 'RHEL',
+                          'os_name': 'OL',
                           'minor_version': 7
                       },
                       'release': {
                           'z_stream': None,
                           'major_version': 8,
                           'tag': None,
-                          'os_name': 'RHEL',
+                          'os_name': 'OL',
                           'minor_version': 0
                       },
                       'in_packageset': {

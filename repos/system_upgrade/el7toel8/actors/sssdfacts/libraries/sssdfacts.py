@@ -10,7 +10,7 @@ class SSSDFactsLibrary(object):
 
     def process(self):
         """
-        Check SSSD configuration for changes in RHEL8 and return them in SSSDConfig
+        Check SSSD configuration for changes in OL8 and return them in SSSDConfig
         model.
 
         These changes are:

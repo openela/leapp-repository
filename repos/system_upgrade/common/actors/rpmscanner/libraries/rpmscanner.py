@@ -69,9 +69,8 @@ def _get_package_repository_data_dnf():
 def get_package_repository_data():
     """ Return dictionary mapping package name with repository from which it was installed.
     Note:
-        There's no yum module for py3. The dnf module can be used only on RHEL 8+,
-        on RHEL 7 there's a bug in dnf preventing us to do so:
-        https://bugzilla.redhat.com/show_bug.cgi?id=1789840
+        There's no yum module for py3. The dnf module can be used only on OpenELA 8+,
+        on OpenELA 7 there's a bug in dnf preventing us to do so:
     """
     if not no_yum:
         return _get_package_repository_data_yum()
@@ -85,7 +84,7 @@ def map_modular_rpms_to_modules():
     Map modular packages to the module streams they come from.
     """
     modules = module_lib.get_modules()
-    # empty on RHEL 7 because of no modules
+    # empty on OpenELA 7 because of no modules
     if not modules:
         return {}
     # create a reverse mapping from the RPMS to module streams

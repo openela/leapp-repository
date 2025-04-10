@@ -32,7 +32,7 @@ class AuthselectDecision(Model):
     """
     Confirmation of changes suggested in Authselect model.
 
-    If confirmed is True, the changes will be applied on RHEL-8 machine.
+    If confirmed is True, the changes will be applied on OL-8 machine.
     """
     topic = SystemInfoTopic
 

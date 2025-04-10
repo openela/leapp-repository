@@ -7,7 +7,7 @@ from leapp.tags import ChecksPhaseTag, IPUWorkflowTag
 
 class MultipathConfCheck(Actor):
     """
-    Checks whether the multipath configuration can be updated to RHEL-8 and
+    Checks whether the multipath configuration can be updated to OL-8 and
     plan necessary tasks.
 
     Specifically, it checks if the path_checker/checker option is set to

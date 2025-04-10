@@ -9,7 +9,7 @@ from leapp.tags import ChecksPhaseTag, IPUWorkflowTag
 
 class CheckRemovedPamModules(Actor):
     """
-    Check for modules that are not available in RHEL 8 anymore
+    Check for modules that are not available in OpenELA 8 anymore
 
     At this moment, we check only for pam_tally2. Few more modules
     are already covered in RemoveOldPAMModulesApply actor
@@ -51,7 +51,7 @@ class CheckRemovedPamModules(Actor):
                 reporting.Title('The {} pam module(s) no longer available'.format(', '.join(found_modules))),
                 reporting.Summary('The services {} using PAM are configured to '
                                   'use {} module(s), which is no longer available '
-                                  'in Red Hat Enterprise Linux 8.'.format(
+                                  'in OpenELA Linux 8.'.format(
                                       ', '.join(found_services), ', '.join(found_modules))),
                 reporting.Remediation(
                     hint='If you depend on its functionality, it is '

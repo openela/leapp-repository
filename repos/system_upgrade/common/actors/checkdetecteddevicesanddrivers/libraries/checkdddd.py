@@ -23,11 +23,11 @@ def create_inhibitors(inhibiting_entries):
         reporting.create_report([
             reporting.Title(
                 'Leapp detected loaded kernel drivers which have been removed '
-                'in RHEL {}. Upgrade cannot proceed.'.format(get_target_major_version())
+                'in OpenELA {}. Upgrade cannot proceed.'.format(get_target_major_version())
             ),
             reporting.Summary(
                 (
-                    'Support for the following RHEL {source} device drivers has been removed in RHEL {target}:\n'
+                    'Support for the following OpenELA {source} device drivers has been removed in OpenELA {target}:\n'
                     '     - {drivers}\n'
                 ).format(
                     drivers='\n     - '.join([entry.driver_name for entry in drivers]),
@@ -55,12 +55,12 @@ def create_inhibitors(inhibiting_entries):
     if devices:
         reporting.create_report([
             reporting.Title(
-                'Leapp detected devices which are no longer supported in RHEL {}. Upgrade cannot proceed.'.format(
+                'Leapp detected devices which are no longer supported in OpenELA {}. Upgrade cannot proceed.'.format(
                     get_target_major_version())
             ),
             reporting.Summary(
                 (
-                    'Support for the following devices has been removed in RHEL {target}:\n'
+                    'Support for the following devices has been removed in OpenELA {target}:\n'
                     '     - {devices}\n'
                 ).format(
                     devices='\n     - '.join(['{name} ({pci})'.format(name=entry.device_name,
@@ -78,12 +78,12 @@ def create_inhibitors(inhibiting_entries):
     if cpus:
         reporting.create_report([
             reporting.Title(
-                'Leapp detected a processor which is no longer supported in RHEL {}. Upgrade cannot proceed.'.format(
+                'Leapp detected a processor which is no longer supported in OpenELA {}. Upgrade cannot proceed.'.format(
                     get_target_major_version())
             ),
             reporting.Summary(
                 (
-                    'Support for the following processors has been removed in RHEL {target}:\n'
+                    'Support for the following processors has been removed in OpenELA {target}:\n'
                     '     - {processors}\n'
                 ).format(
                     processors='\n     - '.join([entry.device_name for entry in cpus]),
@@ -105,12 +105,12 @@ def create_warnings(unmaintained_entries):
     if drivers:
         reporting.create_report([
             reporting.Title(
-                'Leapp detected loaded kernel drivers which are no longer maintained in RHEL {}.'.format(
+                'Leapp detected loaded kernel drivers which are no longer maintained in OpenELA {}.'.format(
                     get_target_major_version())
             ),
             reporting.Summary(
                 (
-                    'The following RHEL {source} device drivers are no longer maintained RHEL {target}:\n'
+                    'The following OpenELA {source} device drivers are no longer maintained OpenELA {target}:\n'
                     '     - {drivers}\n'
                 ).format(
                     drivers='\n     - '.join([entry.driver_name for entry in drivers]),
@@ -127,12 +127,12 @@ def create_warnings(unmaintained_entries):
     if devices:
         reporting.create_report([
             reporting.Title(
-                'Leapp detected devices which are no longer maintained in RHEL {}'.format(
+                'Leapp detected devices which are no longer maintained in OpenELA {}'.format(
                     get_target_major_version())
             ),
             reporting.Summary(
                 (
-                    'The support for the following devices has been removed in RHEL {target} and '
+                    'The support for the following devices has been removed in OpenELA {target} and '
                     'are no longer maintained:\n     - {devices}\n'
                 ).format(
                     devices='\n     - '.join(['{name} ({pci})'.format(name=entry.device_name,
@@ -149,12 +149,12 @@ def create_warnings(unmaintained_entries):
     if cpus:
         reporting.create_report([
             reporting.Title(
-                'Leapp detected a processor which is no longer maintained in RHEL {}.'.format(
+                'Leapp detected a processor which is no longer maintained in OpenELA {}.'.format(
                     get_target_major_version())
             ),
             reporting.Summary(
                 (
-                    'The following processors are no longer maintained in RHEL {target}:\n'
+                    'The following processors are no longer maintained in OpenELA {target}:\n'
                     '     - {processors}\n'
                 ).format(
                     processors='\n     - '.join([entry.device_name for entry in cpus]),

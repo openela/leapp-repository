@@ -20,9 +20,9 @@ def check_kde_gnome():
                                        " no other desktop than KDE installed.")
             # We cannot continue with the upgrade process
             reporting.create_report([
-                reporting.Title("The installed KDE environment is unavailable on RHEL 8."),
+                reporting.Title("The installed KDE environment is unavailable on OpenELA 8."),
                 reporting.Summary(
-                    "Because the KDE desktop environment is not available on RHEL 8, all the KDE-related packages"
+                    "Because the KDE desktop environment is not available on OpenELA 8, all the KDE-related packages"
                     " would be removed during the upgrade. There would be no desktop environment installed after the"
                     " upgrade."),
                 reporting.Severity(reporting.Severity.HIGH),
@@ -44,7 +44,7 @@ def check_kde_gnome():
                                   " be removed in favor of GNOME")
         reporting.create_report([
             reporting.Title("Upgrade can be performed, but KDE will be uninstalled."),
-            reporting.Summary("The KDE desktop environment is unavailable on RHEL 8. KDE will be uninstalled "
+            reporting.Summary("The KDE desktop environment is unavailable on OpenELA 8. KDE will be uninstalled "
                               "in favor of GNOME during the upgrade."),
             reporting.Severity(reporting.Severity.MEDIUM),
             reporting.Groups([
@@ -62,7 +62,7 @@ def check_kde_gnome():
         api.current_logger().info("Installed KDE/Qt apps detected.")
         reporting.create_report([
             reporting.Title("Upgrade can be performed, but KDE/Qt apps will be uninstalled."),
-            reporting.Summary("The KDE desktop environment is unavailable on RHEL 8. "
+            reporting.Summary("The KDE desktop environment is unavailable on OpenELA 8. "
                               "All the KDE/Qt apps will be removed during the upgrade, including but not limited "
                               "to:\n- {0}".format("\n- ".join(KDEAppsFacts.installed_apps))),
             reporting.Severity(reporting.Severity.MEDIUM),

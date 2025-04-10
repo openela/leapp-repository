@@ -64,7 +64,7 @@ def get_installed_pkgs():
         api.current_logger().warning('Unexpectedly received more than one DistributionSignedRPM message.')
     if not installed_rh_signed_rpm_msg:
         raise StopActorExecutionError('Cannot parse PES data properly due to missing list of installed packages',
-                                      details={'Problem': 'Did not receive a message with installed Red Hat-signed '
+                                      details={'Problem': 'Did not receive a message with installed OpenELA-signed '
                                                           'packages (DistributionSignedRPM)'})
 
     for pkg in installed_rh_signed_rpm_msg.items:
@@ -451,14 +451,7 @@ def replace_pesids_with_repoids_in_packages(packages, source_pkgs_repoids):
             message='packages may not be installed or upgraded due to repositories unknown to leapp:',
             skipped_pkgs=packages_without_known_repoid,
             remediation=(
-                'In case the listed repositories are mirrors of official repositories for RHEL'
-                ' (provided by Red Hat on CDN)'
-                ' and their repositories IDs has been customized, you can change'
-                ' the configuration to use the official IDs instead of fixing the problem.'
-                ' You can also review the projected DNF upgrade transaction result'
-                ' in the logs to see what is going to happen, as this does not necessarily mean'
-                ' that the listed packages will not be upgraded. You can also'
-                ' install any missing packages after the in-place upgrade manually.'
+                'Please file a bug at https://github.com/openela/leapp-repository/issues'
             ),
         )
 

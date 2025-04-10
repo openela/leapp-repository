@@ -6,10 +6,10 @@ from leapp.tags import ApplicationsPhaseTag, IPUWorkflowTag
 
 class MultipathConfUpdate8to9(Actor):
     """
-    Modifies multipath configuration files on the target RHEL-9 system so that
+    Modifies multipath configuration files on the target OL-9 system so that
     they will run properly. This is done in three ways
     1. Adding the allow_usb_devices and enable_foreign options to
-       /etc/multipath.conf if they are not present, to retain RHEL-8 behavior
+       /etc/multipath.conf if they are not present, to retain OL-8 behavior
     2. Converting any "*" regular expression strings to ".*"
     """
 

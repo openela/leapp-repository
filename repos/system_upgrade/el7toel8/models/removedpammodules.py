@@ -4,12 +4,12 @@ from leapp.topics import SystemFactsTopic
 
 class RemovedPAMModules(Model):
     """
-    PAM modules that were removed from RHEL8 but are in current configuration.
+    PAM modules that were removed from OL8 but are in current configuration.
     """
     topic = SystemFactsTopic
 
     modules = fields.List(fields.String())
     """
     List of PAM modules that were detected in current configuration but
-    are no longer available in RHEL8.
+    are no longer available in OL8.
     """

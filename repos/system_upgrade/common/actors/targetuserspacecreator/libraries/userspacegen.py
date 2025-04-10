@@ -247,7 +247,7 @@ def prepare_target_userspace(context, userspace_dir, enabled_repos, packages):
         try:
             context.call(cmd, callback_raw=utils.logging_handler)
         except CalledProcessError as exc:
-            message = 'Unable to install RHEL {} userspace packages.'.format(target_major_version)
+            message = 'Unable to install OpenELA {} userspace packages.'.format(target_major_version)
             details = {'details': str(exc), 'stderr': exc.stderr}
 
             if 'more space needed on the' in exc.stderr:
@@ -998,19 +998,13 @@ def gather_target_repositories(context, indata):
         reporting.create_report([
             reporting.Title('There are no enabled target repositories'),
             reporting.Summary(
-                'This can happen when a system is not correctly registered with the subscription manager'
-                ' or, when the leapp --no-rhsm option has been used, no custom repositories have been'
-                ' passed on the command line.'
+                 'This can happen when no custom repositories have been passed on the command line.'
             ),
             reporting.Groups([reporting.Groups.REPOSITORY]),
             reporting.Groups([reporting.Groups.INHIBITOR]),
             reporting.Severity(reporting.Severity.HIGH),
             reporting.Remediation(hint=(
-                'Ensure the system is correctly registered with the subscription manager and that'
-                ' the current subscription is entitled to install the requested target version {version}.'
-                ' If you used the --no-rhsm option (or the LEAPP_NO_RHSM=1 environment variable is set),'
-                ' ensure the custom repository file is provided with'
-                ' properly defined repositories and that the --enablerepo option for leapp is set if the'
+                ' Check that the --enablerepo option for leapp is set if the'
                 ' repositories are defined in any repofiles under the /etc/yum.repos.d/ directory.'
                 ' For more information on custom repository files, see the documentation.'
                 ' Finally, verify that the "/etc/leapp/files/repomap.json" file is up-to-date.'
@@ -1019,7 +1013,7 @@ def gather_target_repositories(context, indata):
                 # https://red.ht/preparing-for-upgrade-to-rhel8
                 # https://red.ht/preparing-for-upgrade-to-rhel9
                 # https://red.ht/preparing-for-upgrade-to-rhel10
-                url='https://red.ht/preparing-for-upgrade-to-rhel{}'.format(target_major_version),
+                url='https://github.com/openela'
                 title='Preparing for the upgrade'),
             reporting.ExternalLink(
                 url='https://access.redhat.com/solutions/7001181',
@@ -1045,11 +1039,10 @@ def gather_target_repositories(context, indata):
             reporting.Severity(reporting.Severity.HIGH),
             reporting.ExternalLink(
                 # NOTE: Article covers both RHEL 7 to RHEL 8 and RHEL 8 to RHEL 9
-                url='https://access.redhat.com/articles/4977891',
-                title='Customizing your Red Hat Enterprise Linux in-place upgrade'),
+                url='https://github.com/openela',
+                title='Using Command Arguments to Enable Repositories'),
             reporting.Remediation(hint=(
-                'Consider using the custom repository file, which is documented in the official'
-                ' upgrade documentation. Check whether a repository ID has been'
+                ' Check whether a repository ID has been'
                 ' entered incorrectly with the --enablerepo option of leapp.'
                 ' Check the leapp logs to see the list of all available repositories.'
             ))
