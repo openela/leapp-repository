@@ -32,6 +32,7 @@ class FilterRpmTransactionTasks(Actor):
         to_remove = set()
         to_keep = set()
         to_upgrade = set()
+        to_exclude = set()
         modules_to_enable = {}
         modules_to_reset = {}
         for event in self.consume(RpmTransactionTasks, PESRpmTransactionTasks):
@@ -53,5 +54,6 @@ class FilterRpmTransactionTasks(Actor):
             to_remove=list(to_remove),
             to_keep=list(to_keep),
             to_upgrade=list(to_upgrade),
+            to_exclude.update(event.to_exclude),
             modules_to_reset=list(modules_to_reset.values()),
             modules_to_enable=list(modules_to_enable.values())))

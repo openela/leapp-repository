@@ -279,6 +279,18 @@ def _transaction(context, stage, target_repoids, tasks, plugin_info, xfs_info,
                 modules_to_reset = {(module.name, module.stream) for module in tasks.modules_to_reset}
                 modules_to_enable = {(module.name, module.stream) for module in tasks.modules_to_enable}
                 module_reset_list = [module[0] for module in modules_to_reset - modules_to_enable]
+                # exclude needed packages
+                if tasks.to_exclude:
+                    exclude = 'excludepkgs={}'.format(','.join(tasks.to_exclude))
+                    cmd = ['/usr/bin/dnf', 'config-manager', '--save', '--setopt', exclude ]
+                    try:
+                        context.call(
+                            cmd=cmd_prefix + cmd,
+                            callback_raw=utils.logging_handler,
+                            env=env
+                        )
+                    except (CalledProcessError, OSError):
+                        api.current_logger().debug('Failed to set excluded packages via dnf with an error. Ignoring.', exc_info=True)
                 # Perform module reset
                 cmd = ['/usr/bin/dnf', 'module', 'reset', '--enabled', ] + module_reset_list
                 cmd += ['--disablerepo', '*', '-y', '--installroot', '/installroot']
