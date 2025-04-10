@@ -19,6 +19,7 @@ from leapp.utils.output import beautify_actor_exception, report_errors, report_i
 @command('upgrade', help='Upgrade the current system to the next available major version.')
 @command_opt('resume', is_flag=True, help='Continue the last execution after it was stopped (e.g. after reboot)')
 @command_opt('reboot', is_flag=True, help='Automatically performs reboot when requested.')
+@command_opt('kexec', is_flag=True, help='Use kexec with automatic reboot')
 @command_opt('whitelist-experimental', action='append', metavar='ActorName', help='Enable experimental actors')
 @command_opt('debug', is_flag=True, help='Enable debug mode', inherit=False)
 @command_opt('verbose', is_flag=True, help='Enable verbose logging', inherit=False)
@@ -91,7 +92,7 @@ def upgrade(args, breadcrumbs):
 
     command_utils.set_resource_limits()
 
-    workflow = repositories.lookup_workflow('IPUWorkflow')(auto_reboot=args.reboot)
+    workflow = repositories.lookup_workflow('IPUWorkflow')(auto_reboot=args.reboot,auto_kexec=args.kexec)
 
     command_utils.load_actor_configs_and_store_it_in_db(context, repositories, cfg)
 

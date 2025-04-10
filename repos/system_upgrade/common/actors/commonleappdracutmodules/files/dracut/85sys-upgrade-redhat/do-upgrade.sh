@@ -241,11 +241,14 @@ do_upgrade() {
 
     # NOTE: flush the cached content to disk to ensure everything is written
     sync
-
     # NOTE: For debugging purposes. It's possible it will be changed in future.
     getarg 'rd.upgrade.break=leapp-post-upgrade' 'rd.upgrade.break=leapp-upgrade' 'rd.break=leapp-upgrade' && {
         emergency_shell -n upgrade "Break right after LEAPP upgrade, before post-upgrade leapp run"
     }
+
+if getargbool 0 rd.upgrade.kexec;then
+    kexec_reboot
+fi
 
     if [ "$rv" -eq 0 ]; then
         # run leapp to proceed phases after the upgrade with Python3
@@ -337,6 +340,51 @@ save_journal() {
     fi
 }
 
+kexec_reboot() {
+    if [ ! -d /boot ];then
+        mkdir /boot
+    fi
+
+    kernel=`/usr/bin/systemd-nspawn $NSPAWN_OPTS -D $NEWROOT /usr/bin/bash -c "mount -a;grubby --default-kernel"`
+    kernel_initrd="${kernel//vmlinuz/initramfs}.img"
+
+    echo "kexec kernel = $kernel"
+    echo "kexec initrd = $kernel_initrd"
+
+    if [ -d /sys/firmware/efi ];then
+        #check for separate boot
+        mount -f -T /sysroot/etc/fstab /boot
+        sb=$?
+        if [ $sb -eq 0 ];then
+            mount -T /sysroot/etc/fstab /boot
+            mount --bind /boot /sysroot/boot
+        else
+            mount --bind /sysroot/boot /boot
+        fi
+        mount -T /sysroot/etc/fstab /boot/efi
+        mount --bind /boot/efi /sysroot/boot/efi
+    else
+        mount -T $NEWROOT/etc/fstab /boot
+        mount --bind /boot /sysroot/boot
+    fi
+
+    if [ -f $kernel ] && [ -f $kernel_initrd ];then
+        $NEWROOT/sbin/kexec -l $kernel --initrd=$kernel_initrd --reuse-cmdline
+        $NEWROOT/sbin/kexec -e
+    else
+        echo "Unable to stat new kernel"
+    fi
+
+    #if we get here kexec failed, cleanup and reboot normally
+    if [ -d /sys/firmware/efi ];then
+        umount /sysroot/boot/efi
+        umount /boot/efi
+        umount /boot
+    else
+        umount /sysroot/boot
+        umount /boot
+    fi
+}
 
 ############################### MAIN #########################################
 # get current mount options of $NEWROOT

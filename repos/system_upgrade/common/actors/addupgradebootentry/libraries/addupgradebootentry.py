@@ -202,6 +202,25 @@ def add_boot_entry(configs=None):
     apply_arm_specific_modifications()
 
 
+    if os.getenv('LEAPP_KEXEC','0') == '1':
+        api.current_logger().warning("Setting grubby kexec")
+        try:
+            cmd = [
+                '/usr/sbin/grubby',
+                '--update-kernel', '{0}'.format(kernel_dst_path),
+                '--args', 'rd.upgrade.kexec=1'
+            ]
+            if configs:
+                for config in configs:
+                    run(cmd + ['-c', config])
+            else:
+                run(cmd)
+        except CalledProcessError as e:
+            raise StopActorExecutionError(
+                'Cannot configure bootloader.',
+                details={'details': '{}: {}'.format(str(e), e.stderr)}
+            )
+
 def _remove_old_upgrade_boot_entry(kernel_dst_path, configs=None):
     """
     Remove entry referring to the upgrade kernel.
