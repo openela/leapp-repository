@@ -368,8 +368,14 @@ kexec_reboot() {
         mount --bind /boot /sysroot/boot
     fi
 
+    sb_status=`/usr/bin/systemd-nspawn $NSPAWN_OPTS -D $NEWROOT /usr/bin/bash -c "mount -a;mokutil --sb-state"`
+    if [[ "$sb_status" == *"SecureBoot enabled"* ]];then
+        echo "Secureboot enabled, setting -s on kexec"
+        sb_flag="-s"
+    fi
+
     if [ -f $kernel ] && [ -f $kernel_initrd ];then
-        $NEWROOT/sbin/kexec -l $kernel --initrd=$kernel_initrd --reuse-cmdline
+        $NEWROOT/sbin/kexec $sb_flag -l $kernel --initrd=$kernel_initrd --command-line="$bootargs"
         $NEWROOT/sbin/kexec -e
     else
         echo "Unable to stat new kernel"
