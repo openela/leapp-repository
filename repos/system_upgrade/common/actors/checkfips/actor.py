@@ -4,7 +4,7 @@ from leapp.exceptions import StopActorExecutionError
 from leapp.libraries.common.config import version
 from leapp.models import DracutModule, FIPSInfo, Report, UpgradeInitramfsTasks
 from leapp.tags import ChecksPhaseTag, IPUWorkflowTag
-
+import os
 
 class CheckFips(Actor):
     """
@@ -25,6 +25,19 @@ class CheckFips(Actor):
                                                               'usage'})
 
         if version.get_target_major_version() == '8':
+            if os.getenv('LEAPP_FIPS','0') == '1':
+                title = 'FIPS check is being bypassed due to LEAPP_FIPS=1 env flag.'
+                summary = 'Leapp has detected that FIPS is enabled on this system. ' \
+                          'In-place upgrade of systems in FIPS mode is only supported ' \
+                          'for systems with LEAPP_FIPS=1 env variable set only.'
+                reporting.create_report([
+                    reporting.Title(title),
+                    reporting.Summary(summary),
+                    reporting.Severity(reporting.Severity.HIGH),
+                    reporting.Tags([reporting.Tags.SECURITY])
+                ])
+                return
+
             if fips_info.is_enabled:
                 title = 'Automated upgrades from RHEL 7 to RHEL 8 in FIPS mode are not supported'
                 summary = ('Leapp has detected that FIPS is enabled on this system. '

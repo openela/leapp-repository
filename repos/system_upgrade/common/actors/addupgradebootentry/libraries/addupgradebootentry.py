@@ -16,7 +16,8 @@ from leapp.models import (
     LiveModeArtifacts,
     LiveModeConfig,
     TargetKernelCmdlineArgTasks,
-    UpgradeKernelCmdlineArgTasks
+    UpgradeKernelCmdlineArgTasks,
+    SystemFIPSStatus
 )
 
 
@@ -220,6 +221,30 @@ def add_boot_entry(configs=None):
                 'Cannot configure bootloader.',
                 details={'details': '{}: {}'.format(str(e), e.stderr)}
             )
+
+    if os.getenv('LEAPP_FIPS','0') == '1':
+        fips_enabled = next(api.consume(SystemFIPSStatus), None)
+        if fips_enabled.fips_status != 'enabled':
+            return
+
+        api.current_logger().info("Setting setting grubby fips=0 for upgrade initramfs")
+        try:
+            cmd = [
+                '/usr/sbin/grubby',
+                '--update-kernel', '{0}'.format(kernel_dst_path),
+                '--args', 'fips=0'
+            ]
+            if configs:
+                for config in configs:
+                    run(cmd + ['-c', config])
+            else:
+                run(cmd)
+        except CalledProcessError as e:
+            raise StopActorExecutionError(
+                'Cannot configure bootloader.',
+                details={'details': '{}: {}'.format(str(e), e.stderr)}
+            )
+
 
 def _remove_old_upgrade_boot_entry(kernel_dst_path, configs=None):
     """

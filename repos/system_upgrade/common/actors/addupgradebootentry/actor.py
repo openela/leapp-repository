@@ -15,7 +15,8 @@ from leapp.models import (
     LiveModeConfig,
     TargetKernelCmdlineArgTasks,
     TransactionDryRun,
-    UpgradeKernelCmdlineArgTasks
+    UpgradeKernelCmdlineArgTasks,
+    SystemFIPSStatus
 )
 from leapp.tags import InterimPreparationPhaseTag, IPUWorkflowTag
 
@@ -39,7 +40,8 @@ class AddUpgradeBootEntry(Actor):
         KernelCmdline,
         TransactionDryRun,
         TargetKernelCmdlineArgTasks,
-        UpgradeKernelCmdlineArgTasks
+        UpgradeKernelCmdlineArgTasks,
+        SystemFIPSStatus
     )
     produces = (LateTargetKernelCmdlineArgTasks,)
     tags = (IPUWorkflowTag, InterimPreparationPhaseTag)
