@@ -951,6 +951,55 @@ def _get_rh_available_repoids(context, indata):
     return rh_repoids
 
 
+def _rewrite_oci_vars_in_repofiles(context, indata):
+    """
+    This function is a workaround for leapp not working with oci vars.
+    """
+
+    repofiles = repofileutils.get_parsed_repofiles(context)
+    repodir=(os.path.join(constants.SCRATCH_DIR, 'repofiles'))
+    if os.path.exists(repodir):
+        shutil.rmtree(repodir)
+
+    os.mkdir(repodir)
+    for repofile in repofiles:
+        _dst_path = os.path.join(repodir, os.path.basename(repofile.file))
+        shutil.copyfile(repofile.file, _dst_path)
+
+    if os.path.exists('/etc/yum/vars/ociregion'):
+        f = open("/etc/yum/vars/ociregion", "r")
+        oci_region = (f.readline())
+        oci_region = oci_region.rstrip("\n")
+        f.close()
+
+    if os.path.exists('/etc/yum/vars/ocidomain'):
+        f = open("/etc/yum/vars/ocidomain", "r")
+        oci_domain = (f.readline())
+        oci_domain = oci_domain.rstrip("\n")
+        f.close()
+
+    for repofile in repofiles:
+        _dst_path = os.path.join(repodir, os.path.basename(repofile.file))
+        if os.path.exists(_dst_path):
+            f = open(_dst_path, "rt")
+            data = f.read()
+            if os.path.exists('/etc/yum/vars/ociregion'):
+                data = data.replace('$ociregion', oci_region)
+            if os.path.exists('/etc/yum/vars/ocidomain'):
+                data = data.replace('$ocidomain', oci_domain)
+            else:
+                data = data.replace('$ocidomain', 'oracle.com')
+            f.close()
+            f = open(_dst_path, "wt")
+            f.write(data)
+            f.close()
+
+    for repofile in repofiles:
+        updated_repo = os.path.join(repodir, os.path.basename(repofile.file))
+        _dst_path = os.path.join('/etc/yum.repos.d', os.path.basename(repofile.file))
+        context.copy_to(updated_repo, _dst_path)
+
+
 def gather_target_repositories(context, indata):
     """
     Get available required target repositories and inhibit or raise error if basic checks do not pass.
@@ -1087,6 +1136,7 @@ def _gather_target_repositories(context, indata, prod_cert_path):
     rhsm.switch_certificate(context, indata.rhsm_info, prod_cert_path)
 
     _install_custom_repofiles(context, indata.custom_repofiles)
+    _rewrite_oci_vars_in_repofiles(context, indata)
     return gather_target_repositories(context, indata)
 
 
